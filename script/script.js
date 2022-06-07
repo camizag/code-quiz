@@ -70,6 +70,7 @@ function checkAnswer(answer) {
         answerContainer.innerHTML = "Correct Answer";
     } else {
         answerContainer.innerHTML = "Wrong Answer";
+        totalTime-=10;
     }
 }
 
