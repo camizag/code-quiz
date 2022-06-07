@@ -31,11 +31,18 @@ let quiz = [
     },
 ];
 
+
 //Timer variables
 let timerContainer = document.getElementsByClassName("timer-container");
 let timer = document.getElementById("timer");
+let totalTime = 100;
 
-//Timer
+// Function to start the timer
+let startTimer = setInterval(function(){
+    totalTime--;
+    timer.textContent = "";
+    timer.textContent = "Time left: " + totalTime + "s.";
+}, 1000);
 
 
 // Quiz variables
@@ -52,6 +59,8 @@ function showQuestion() {
     option2.innerHTML = question.options[1];
     option3.innerHTML = question.options[2];
     option4.innerHTML = question.options[3];
+
+    startTimer();
 }
 
 // Fuction to check if the answer is correct or not
@@ -64,11 +73,8 @@ function checkAnswer(answer) {
     }
 }
 
-function quizTimer(duration, display) {
-    
-}
 
-// Function to change the question on clicking the next button
+// Function to change the question by clicking the next button
 function nextQuestion() {
     playingQuestion++;
     if (playingQuestion === allQuestions) {
@@ -78,13 +84,15 @@ function nextQuestion() {
     }
 }
 
-//function to change the question on click and check the answer
+
+//function to change the question by click and check the answer
 function changeQuestion(event) {
     event.preventDefault();
     let answer = event.target.innerHTML;
     checkAnswer(answer);
     nextQuestion();
 }
+
 
 // Add event listener to the question options
 option1.addEventListener("click", changeQuestion);
@@ -94,3 +102,5 @@ option4.addEventListener("click", changeQuestion);
 // Display the first question
 
 showQuestion();
+
+startTimer();
