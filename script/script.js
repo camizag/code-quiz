@@ -42,10 +42,16 @@ let startTimer = setInterval(function(){
     totalTime--;
     timer.textContent = "";
     timer.textContent = "Time left: " + totalTime + "s.";
+
+    if (totalTime === 0) {
+        alert("Time's up! Try again.");
+        totalTime = 100;
+    }
 }, 1000);
 
 
 // Quiz variables
+let scoreCounter = document.getElementById("score-counter");
 let playingQuestion = 0;
 let score = 0;
 let allQuestions = quiz.length;
@@ -67,6 +73,7 @@ function showQuestion() {
 function checkAnswer(answer) {
     if (answer === quiz[playingQuestion].answer) {
         score++;
+        scoreCounter.textContent = "Your score is: " + score + "/4."
         answerContainer.innerHTML = "Correct Answer";
     } else {
         answerContainer.innerHTML = "Wrong Answer";
